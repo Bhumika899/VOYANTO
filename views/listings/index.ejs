@@ -129,8 +129,12 @@
                 <b>
                   <%= listing.title %>
                 </b><br>
-                &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
-                  <i id="tax-info">&nbsp;&nbsp;+18%</i>
+
+                ₹<%= listing.price.toLocaleString("en-IN") %>/night
+
+                  <span class="tax-info">
+                    (₹<%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> incl. tax)
+                  </span>
               </p>
             </div>
           </div>
@@ -157,6 +161,17 @@
     <script src="/js/nearby.js"></script>
 
     <script src="/js/filters.js"></script>
+    <script>
+      const taxSwitch = document.getElementById("switchCheckDefault");
+
+      taxSwitch.addEventListener("change", () => {
+        const taxInfos = document.querySelectorAll(".tax-info");
+
+        taxInfos.forEach(info => {
+          info.style.display = taxSwitch.checked ? "inline" : "none";
+        });
+      });
+    </script>
 
 
     <!-- <ul>

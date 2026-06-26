@@ -2,18 +2,25 @@ const Listing = require("../models/listing.js");
 const { getDistance } = require("geolib");
 const axios = require("axios");
 module.exports.index = async (req, res) => {
-    const { category } = req.query;
+    const { category, search } = req.query;
 
-    console.log("Category =", category);
+    let query = {};
 
-    let allListings;
-
+    // Category filter
     if (category) {
-        allListings = await Listing.find({ category });
-        console.log("Found listings =", allListings.length);
-    } else {
-        allListings = await Listing.find({});
+        query.category = category;
     }
+
+    // Search filter
+    if (search) {
+        query.$or = [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { country: { $regex: search, $options: "i" } }
+        ];
+    }
+
+    const allListings = await Listing.find(query);
 
     res.render("listings/index.ejs", { allListings });
 };

@@ -1,9 +1,24 @@
 <style>
+  .navbar-brand {
+    font-size: 2rem;
+    color: #fe424d !important;
+    margin-right: 8rem;
+    /* add space after logo */
+  }
+
   .search-btn {
-    background-color: #fe442d;
-    color: #fff;
+    background-color: #fe424d;
+    color: white;
     border-radius: 25px;
-    padding: 0 1rem 0 1rem;
+    padding: 0 1rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .search-btn i {
+    display: inline;
   }
 
   .search-btn :hover {
@@ -11,10 +26,10 @@
     color: #fff;
   }
 
-  .search-btn i {
+  /* .search-btn i {
     display: inline;
     margin-right: 0.5rem;
-  }
+  } */
 
   .search-inp {
     border-radius: 25px;
@@ -24,7 +39,7 @@
 </style>
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass">Voyanta</i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -37,9 +52,11 @@
 
       </div>
       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 search-inp" type="search" placeholder="Search Destination" />
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        <form class="d-flex" role="search" action="/listings" method="GET">
+          <input class="form-control me-2 search-inp" type="search" name="search" placeholder="Search Destination" />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
         </form>
       </div>
       <div class="navbar-nav ms-auto">
